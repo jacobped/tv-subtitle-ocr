@@ -1,7 +1,7 @@
 package dk.kb.tvsubtitleocr.extractor;
-import dk.kb.tvsubtitleocr.lib.common.PropertiesFactory;
-import dk.kb.tvsubtitleocr.lib.common.RuntimeProperties;
-import dk.kb.tvsubtitleocr.lib.VideoProcessor;
+import dk.kb.tvsubtitleocr.videoProcessor.common.PropertiesFactory;
+import dk.kb.tvsubtitleocr.videoProcessor.common.RuntimeProperties;
+import dk.kb.tvsubtitleocr.videoProcessor.VideoProcessor;
 import dk.kb.tvsubtitleocr.extractor.mainprocessor.ProcessFileListToFiles;
 import dk.kb.tvsubtitleocr.extractor.mainprocessor.ProcessIndexToDoms;
 import dk.kb.tvsubtitleocr.extractor.mainprocessor.ProcessIndexToFiles;

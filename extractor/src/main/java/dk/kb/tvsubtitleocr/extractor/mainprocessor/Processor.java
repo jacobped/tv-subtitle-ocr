@@ -1,8 +1,8 @@
 package dk.kb.tvsubtitleocr.extractor.mainprocessor;
 
 import dk.kb.tvsubtitleocr.extractor.VideoMassProcessor;
-import dk.kb.tvsubtitleocr.lib.common.PropertiesFactory;
-import dk.kb.tvsubtitleocr.lib.common.RuntimeProperties;
+import dk.kb.tvsubtitleocr.videoProcessor.common.PropertiesFactory;
+import dk.kb.tvsubtitleocr.videoProcessor.common.RuntimeProperties;
 import dk.kb.tvsubtitleocr.extractor.model.VideoInfo;
 import dk.kb.tvsubtitleocr.extractor.model.VideoResultHandler;
 import org.apache.commons.cli.CommandLine;

@@ -21,7 +21,7 @@
         </dependency>
         <dependency>
             <groupId>dk.kb.subtitles</groupId>
-            <artifactId>lib</artifactId>
+            <artifactId>videoProcessor</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         
@@ -143,7 +143,7 @@
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
 
                             <!--<addClasspath>true</addClasspath>-->
-                            <!--<classpathPrefix>lib/</classpathPrefix>-->
+                            <!--<classpathPrefix>videoProcessor/</classpathPrefix>-->
                             <!-- Jar file entry point -->
                             <mainClass>dk.hapshapshaps.classifier.objectdetection.Main</mainClass>
                         </manifest>

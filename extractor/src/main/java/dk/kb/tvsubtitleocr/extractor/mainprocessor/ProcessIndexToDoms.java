@@ -1,6 +1,6 @@
 package dk.kb.tvsubtitleocr.extractor.mainprocessor;
 import dk.kb.tvsubtitleocr.extractor.externalservice.SrtDomsClient;
-import dk.kb.tvsubtitleocr.lib.common.RuntimeProperties;
+import dk.kb.tvsubtitleocr.videoProcessor.common.RuntimeProperties;
 import dk.kb.tvsubtitleocr.extractor.model.VideoInfo;
 import dk.kb.tvsubtitleocr.extractor.model.VideoResultHandler;
 import dk.statsbiblioteket.doms.central.connectors.BackendInvalidResourceException;
