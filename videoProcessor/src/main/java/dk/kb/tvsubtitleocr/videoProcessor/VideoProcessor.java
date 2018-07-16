@@ -1,9 +1,9 @@
 package dk.kb.tvsubtitleocr.videoProcessor;
 
-import dk.kb.tvsubtitleocr.videoProcessor.common.FileAndPathUtilities;
-import dk.kb.tvsubtitleocr.videoProcessor.common.RuntimeProperties;
-import dk.kb.tvsubtitleocr.videoProcessor.common.Timer;
-import dk.kb.tvsubtitleocr.videoProcessor.common.Utility;
+import dk.kb.tvsubtitleocr.common.FileAndPathUtilities;
+import dk.kb.tvsubtitleocr.common.RuntimeProperties;
+import dk.kb.tvsubtitleocr.common.Timer;
+import dk.kb.tvsubtitleocr.common.Utility;
 import dk.kb.tvsubtitleocr.videoProcessor.frameextraction.FrameExtractionProcessor;
 import dk.kb.tvsubtitleocr.videoProcessor.frameextraction.IFrameExtractionProcessor;
 import dk.kb.tvsubtitleocr.videoProcessor.frameextraction.VideoFrame;

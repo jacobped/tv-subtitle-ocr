@@ -2,7 +2,7 @@ package dk.kb.tvsubtitleocr.videoProcessor.preprocessing;
 
 import dk.hapshapshaps.machinelearning.objectdetection.*;
 import dk.hapshapshaps.machinelearning.objectdetection.models.*;
-import dk.kb.tvsubtitleocr.videoProcessor.common.Named;
+import dk.kb.tvsubtitleocr.common.Named;
 import dk.kb.tvsubtitleocr.videoProcessor.frameextraction.VideoFrame;
 import dk.statsbiblioteket.util.Pair;
 import org.slf4j.Logger;

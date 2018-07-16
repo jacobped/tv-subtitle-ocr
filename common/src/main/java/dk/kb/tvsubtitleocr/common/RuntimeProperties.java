@@ -1,4 +1,4 @@
-package dk.kb.tvsubtitleocr.videoProcessor.common;
+package dk.kb.tvsubtitleocr.common;
 import java.util.Map;
 
 public class RuntimeProperties {

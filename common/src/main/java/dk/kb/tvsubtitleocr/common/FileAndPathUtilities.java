@@ -1,4 +1,4 @@
-package dk.kb.tvsubtitleocr.videoProcessor.common;
+package dk.kb.tvsubtitleocr.common;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;

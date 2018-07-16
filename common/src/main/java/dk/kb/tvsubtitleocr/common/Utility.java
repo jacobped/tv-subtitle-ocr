@@ -1,4 +1,4 @@
-package dk.kb.tvsubtitleocr.videoProcessor.common;
+package dk.kb.tvsubtitleocr.common;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;

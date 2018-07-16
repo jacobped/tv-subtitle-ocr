@@ -1,10 +1,10 @@
 package dk.kb.tvsubtitleocr.videoProcessor.ocrprocessing;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import dk.kb.tvsubtitleocr.videoProcessor.common.FileAndPathUtilities;
-import dk.kb.tvsubtitleocr.videoProcessor.common.PropertiesFactory;
-import dk.kb.tvsubtitleocr.videoProcessor.common.RuntimeProperties;
-import dk.kb.tvsubtitleocr.videoProcessor.common.Utility;
+import dk.kb.tvsubtitleocr.common.FileAndPathUtilities;
+import dk.kb.tvsubtitleocr.common.PropertiesFactory;
+import dk.kb.tvsubtitleocr.common.RuntimeProperties;
+import dk.kb.tvsubtitleocr.common.Utility;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

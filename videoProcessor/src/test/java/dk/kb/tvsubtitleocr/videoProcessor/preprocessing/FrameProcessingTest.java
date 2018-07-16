@@ -1,6 +1,6 @@
 package dk.kb.tvsubtitleocr.videoProcessor.preprocessing;
-import dk.kb.tvsubtitleocr.videoProcessor.common.PropertiesFactory;
-import dk.kb.tvsubtitleocr.videoProcessor.common.RuntimeProperties;
+import dk.kb.tvsubtitleocr.common.PropertiesFactory;
+import dk.kb.tvsubtitleocr.common.RuntimeProperties;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

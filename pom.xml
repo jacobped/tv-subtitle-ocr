@@ -16,6 +16,7 @@
     <modules>
         <module>videoProcessor</module>
         <module>extractor</module>
+        <module>common</module>
         <module>test-resources</module>
     </modules>
 

@@ -1,8 +1,8 @@
 package dk.kb.tvsubtitleocr.extractor;
 import dk.kb.tvsubtitleocr.extractor.externalservice.VideoIndexClient;
 import dk.kb.tvsubtitleocr.extractor.model.VideoInfo;
-import dk.kb.tvsubtitleocr.videoProcessor.common.PropertiesFactory;
-import dk.kb.tvsubtitleocr.videoProcessor.common.RuntimeProperties;
+import common.PropertiesFactory;
+import common.RuntimeProperties;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;

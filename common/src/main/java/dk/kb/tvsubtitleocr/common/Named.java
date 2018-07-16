@@ -1,4 +1,4 @@
-package dk.kb.tvsubtitleocr.videoProcessor.common;
+package dk.kb.tvsubtitleocr.common;
 
 public class Named implements AutoCloseable{
 
