@@ -1,7 +1,9 @@
 package dk.kb.tvsubtitleocr.extractor;
-import common.PropertiesFactory;
-import common.RuntimeProperties;
-import dk.kb.tvsubtitleocr.videoProcessor.VideoProcessor;
+
+import dk.kb.tvsubtitleocr.common.PropertiesFactory;
+import dk.kb.tvsubtitleocr.common.RuntimeProperties;
+import dk.kb.tvsubtitleocr.common.Utility;
+import dk.kb.tvsubtitleocr.videoProcessor.controller.VideoProcessor;
 import org.apache.commons.collections4.map.LinkedMap;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -70,25 +72,6 @@ public class VideoMassProcessor {
         return result;
     }
 
-    protected File getFileFromVideoUUID(UUID video) throws IOException {
-//        File result = null;
-
-        CharSequence dirSequence = video.toString().subSequence(0, 4);
-        String dir1 = String.valueOf(dirSequence.charAt(0));
-        String dir2 = String.valueOf(dirSequence.charAt(1));
-        String dir3 = String.valueOf(dirSequence.charAt(2));
-        String dir4 = String.valueOf(dirSequence.charAt(3));
-        Path videoPath = Paths.get(videoSourceDir.getAbsolutePath(), dir1, dir2, dir3, dir4,
-                String.join(".", video.toString(), videoFileExtension)
-        );
-
-        if(Files.notExists(videoPath)) {
-            throw new IOException("No video file at the expected location: " + videoPath.toString());
-        }
-
-        return videoPath.toFile();
-    }
-
     protected File createSrtOutputDir(File sharedWorkDir) {
         Path newSRTOutputDir = Paths.get(sharedWorkDir.getAbsolutePath(), "srtOutputs");
         if(Files.notExists(newSRTOutputDir)) {
@@ -114,7 +97,7 @@ public class VideoMassProcessor {
 
             @Override
             public File call() throws IOException {
-                File video = getFileFromVideoUUID(videoUUIDInternal);
+                File video = Utility.getFileFromVideoUUID(videoUUIDInternal, videoSourceDir, videoFileExtension);
                 File taskWorkDir;
 
                 try {

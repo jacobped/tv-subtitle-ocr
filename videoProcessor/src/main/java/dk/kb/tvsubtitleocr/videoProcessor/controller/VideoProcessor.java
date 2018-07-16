@@ -1,4 +1,4 @@
-package dk.kb.tvsubtitleocr.videoProcessor;
+package dk.kb.tvsubtitleocr.videoProcessor.controller;
 
 import dk.kb.tvsubtitleocr.common.FileAndPathUtilities;
 import dk.kb.tvsubtitleocr.common.RuntimeProperties;
@@ -22,9 +22,11 @@ import org.slf4j.LoggerFactory;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.LinkedList;
@@ -54,7 +56,7 @@ public class VideoProcessor {
                 Paths.get(properties.getProperty(RuntimeProperties.ResourceName.objectLabelPath)).toFile());
     }
 
-    public VideoProcessor(RuntimeProperties properties, File workDir, File modelfile, File labelfile) throws IOException {
+    public VideoProcessor(RuntimeProperties properties, File workDir, File modelfile, File labelfile) {
         this.properties = properties;
         this.workDir = workDir;
         this.debug = properties.getDebug();
@@ -86,6 +88,12 @@ public class VideoProcessor {
     }
 
     public void processVideo(File videoFile, Path srtOutputFile) throws IOException {
+        List<String> srtContent = processVideo(videoFile);
+        Files.write(srtOutputFile, srtContent, Charset.forName("UTF-8"), StandardOpenOption.CREATE_NEW);
+    }
+
+    public List<String> processVideo(File videoFile) throws IOException {
+        List<String> resultSrtContent;
 
         try(Timer timer = new Timer("Processing video", log)) { // Starts a timer.
 
@@ -132,12 +140,12 @@ public class VideoProcessor {
             // Process TesseractResults.
             ocrResults = postProcessText(ocrResults);
 
-            generateSRT(ocrResults, srtOutputFile);
+            resultSrtContent = generateSRT(ocrResults);
 
         } // Stops the timer and logs result.
+
+        return resultSrtContent;
     }
-
-
 
     private void generateSRT(LinkedMap<VideoFrame, List<String>> ocrResults, Path srtOutputFile) throws IOException {
         List<FrameSubtitle> subs = new LinkedList<>();
@@ -145,6 +153,14 @@ public class VideoProcessor {
         // ocrResults is a LinkedMap, and as such is already sorted.
         ocrResults.forEach((k, v) -> subs.add(new FrameSubtitle(k.getStartTime(), k.getEndTime(), v)));
         srtProcessor.createSRT(srtOutputFile, subs);
+    }
+
+    private List<String> generateSRT(LinkedMap<VideoFrame, List<String>> ocrResults) throws IOException {
+        List<FrameSubtitle> subs = new LinkedList<>();
+
+        // ocrResults is a LinkedMap, and as such is already sorted.
+        ocrResults.forEach((k, v) -> subs.add(new FrameSubtitle(k.getStartTime(), k.getEndTime(), v)));
+        return srtProcessor.createSRT(subs);
     }
 
     private LinkedMap<VideoFrame, List<String>> ocr(List<VideoFrame> videoFrames) {
@@ -272,21 +288,24 @@ public class VideoProcessor {
         return result;
     }
 
-    protected IFrameExtractionProcessor createFrameExtractionProcessor() throws IOException {
+    protected IFrameExtractionProcessor createFrameExtractionProcessor() /*throws IOException*/ {
         FrameExtractionProcessor result;
         Path workDirPath = Paths.get(this.workDir.getAbsolutePath(), frameExtractionWorkDirName);
         File workDir;
         boolean workDirExists = Files.exists(workDirPath);
 
-        if(debug && ! workDirExists) {
-            workDir = Files.createDirectory(workDirPath).toFile();
+        try {
+            if (debug && !workDirExists) {
+                workDir = Files.createDirectory(workDirPath).toFile();
+            } else if (!debug) {
+                if (workDirExists) FileUtils.forceDelete(workDirPath.toFile());
+                workDir = Files.createDirectory(workDirPath).toFile();
+            } else {
+                workDir = workDirPath.toFile();
+            }
         }
-        else if( ! debug ) {
-            if(workDirExists) FileUtils.forceDelete(workDirPath.toFile());
-            workDir = Files.createDirectory(workDirPath).toFile();
-        }
-        else {
-            workDir = workDirPath.toFile();
+        catch (IOException e) {
+            throw new RuntimeException("Unexpectedly failed creating or deleting the frameExtraction workDir.", e);
         }
 
         String ffmpegPath = properties.getProperty(RuntimeProperties.ResourceName.ffmpegPath);

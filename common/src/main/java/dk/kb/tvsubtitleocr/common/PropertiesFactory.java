@@ -65,6 +65,7 @@ public class PropertiesFactory {
         verifyGeneralProperties(properties);
         verifyIndexProperties(properties);
         verifyDomsProperties(properties);
+        verifyMachineLearningProperties(properties);
     }
 
     protected static void verifyDomsProperties(RuntimeProperties properties) {
@@ -196,6 +197,36 @@ public class PropertiesFactory {
                         + trainedDataLanguageFile
                         + " in the directory " + tesseractDataDir);
             }
+        }
+    }
+
+    protected static void verifyMachineLearningProperties(RuntimeProperties properties) {
+
+        String engineModeString = properties.getProperty(RuntimeProperties.ResourceName.tesseractOCREngineMode);
+        try {
+            Integer.parseInt(engineModeString);
+        }
+        catch (NumberFormatException e) {
+            throw new RuntimeException("Couldn't parse engineMode property value to int.", e);
+        }
+
+        Path objectModelPath = Utility.stringAsNullOrPath(properties.getProperty(
+                RuntimeProperties.ResourceName.objectModelPath));
+
+        Path objectLabelPath = Utility.stringAsNullOrPath(properties.getProperty(
+                RuntimeProperties.ResourceName.objectLabelPath));
+
+        if(objectModelPath == null) {
+            throw new RuntimeException(RuntimeProperties.ResourceName.objectModelPath.toString() + " is not set.");
+        }
+        if(objectLabelPath == null) {
+            throw new RuntimeException(RuntimeProperties.ResourceName.objectLabelPath.toString() + " is not set.");
+        }
+        if(Files.notExists(objectModelPath)) {
+            throw new RuntimeException(RuntimeProperties.ResourceName.objectModelPath.toString() + " doesn't exist.");
+        }
+        if(Files.notExists(objectLabelPath)) {
+            throw new RuntimeException(RuntimeProperties.ResourceName.objectLabelPath.toString() + " doesn't exist.");
         }
     }
 }

@@ -32,6 +32,15 @@ public class GenerateSRT {
     }
 
     /**
+     * Create a SRT formatted File from the given FrameSubtitles.
+     * @param frameSubtitles The subtitle content to process.
+     * @return the generated srt file content as a list of Strings.
+     */
+    public List<String> createSRT(List<FrameSubtitle> frameSubtitles) {
+        return generateSRTFileContent(frameSubtitles);
+    }
+
+    /**
      * Generates a list with the input content formatted according to the SRT format.
      * Each line represent a line in a SRT-file.
      * @param frameSubtitles The content to generate the SRT from.

@@ -28,11 +28,15 @@ public class FramePreProcessor {
     private final ExecutorService executorService;
 
 
-    public FramePreProcessor(int workerThreads, File objectModelfile, File objectLabelfile) throws IOException {
+    public FramePreProcessor(int workerThreads, File objectModelfile, File objectLabelfile) {
         this.workerThreads = workerThreads;
         this.executorService = Executors.newFixedThreadPool(workerThreads);
         this.frameProcessorOpenCV = new FrameProcessorOpenCV();
-        this.detector = new CustomObjectDetector(objectModelfile, objectLabelfile);
+        try {
+            this.detector = new CustomObjectDetector(objectModelfile, objectLabelfile);
+        } catch (IOException e) {
+            throw new RuntimeException("Unexpected exception from ObjectDetector about either modelFile or labelFile not existing.", e);
+        }
     }
 
     public FramePreProcessor(int workerThreads) {

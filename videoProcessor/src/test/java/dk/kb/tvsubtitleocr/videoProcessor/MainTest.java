@@ -2,6 +2,7 @@ package dk.kb.tvsubtitleocr.videoProcessor;
 
 import dk.kb.tvsubtitleocr.common.PropertiesFactory;
 import dk.kb.tvsubtitleocr.common.RuntimeProperties;
+import dk.kb.tvsubtitleocr.videoProcessor.controller.VideoProcessor;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
