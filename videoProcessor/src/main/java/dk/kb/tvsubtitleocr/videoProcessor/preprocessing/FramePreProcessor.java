@@ -1,8 +1,5 @@
 package dk.kb.tvsubtitleocr.videoProcessor.preprocessing;
 
-import dk.hapshapshaps.machinelearning.classifier.Classifier;
-import dk.hapshapshaps.machinelearning.classifier.CustomClassifier;
-import dk.hapshapshaps.machinelearning.classifier.models.ClassifyRecognition;
 import dk.hapshapshaps.machinelearning.objectdetection.*;
 import dk.hapshapshaps.machinelearning.objectdetection.models.*;
 import dk.kb.tvsubtitleocr.videoProcessor.common.Named;

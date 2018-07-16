@@ -1,7 +1,6 @@
 package dk.kb.tvsubtitleocr.extractor;
-import dk.kb.tvsubtitleocr.videoProcessor.common.PropertiesFactory;
+
 import dk.kb.tvsubtitleocr.videoProcessor.common.RuntimeProperties;
-import dk.kb.tvsubtitleocr.videoProcessor.VideoProcessor;
 import dk.kb.tvsubtitleocr.extractor.mainprocessor.ProcessFileListToFiles;
 import dk.kb.tvsubtitleocr.extractor.mainprocessor.ProcessIndexToDoms;
 import dk.kb.tvsubtitleocr.extractor.mainprocessor.ProcessIndexToFiles;
@@ -30,33 +29,6 @@ import java.util.concurrent.Future;
 public class MainTest {
     final static Logger log = LoggerFactory.getLogger(MainTest.class);
     protected final String uuidListFileName = "uuidList.txt";
-
-    @Test
-    @Disabled("For manual debugging only.")
-    public void runVideoProcessor() throws IOException {
-
-        log.info("Starting.");
-        log.info("Setting up program.");
-        RuntimeProperties properties = PropertiesFactory.getProperties();
-        VideoProcessor videoProcessor = new VideoProcessor(properties);
-
-        log.info("Running program.");
-//        File video = new File("/home/andreas/Videos/new-girl-s1e1-downsize.m4v");
-        File video = new File("/home/andreas/Videos/dr1-4.mp4");
-        //File video = new File("/home/andreas/Videos/dr1-8.mp4");
-        Path workDir = Paths.get(properties.getProperty(RuntimeProperties.ResourceName.sharedWorkDir));
-        Path srtPath = Paths.get(workDir.toString(), "/subtitles.srt");
-
-        try {
-            Files.deleteIfExists(srtPath);
-        } catch (IOException e) {
-            throw new RuntimeException("Something happened when deleting the SRT file. FilePath: " + srtPath, e);
-        }
-
-        videoProcessor.processVideo(video, srtPath);
-
-        log.info("The End.");
-    }
 
     @Test
     @Disabled("For manual debugging only.")
@@ -125,6 +97,7 @@ public class MainTest {
         log.info("Program has shut down.");
     }
 
+    @SuppressWarnings("Duplicates")
     @Test
     @Disabled("For manual debugging only.")
     void createWorkDir() throws IOException {
@@ -138,5 +111,4 @@ public class MainTest {
 
         Files.createDirectories(workDirPath);
     }
-
 }
